@@ -6,26 +6,44 @@
         cols: 1
         GridLayout:
             cols: 1
+            #spacing is internal and padding is external
+            padding: 15, 15
+            spacing: 20,20
             Label:
                 text:"User Login"
+                font_size: '30sp'
+                color:0.6, 0.4, 0.9
             TextInput:
                 id: username
                 hint_text:"Username"
             TextInput:
                 id: password
+                password: True
                 hint_text:"Password"
-            Button: 
-                text: "Login"
-                on_press: root.login(root.ids.username.text, root.ids.password.text)
+            #relative layout helps with spacing the login button
+            RelativeLayout:
+                Button: 
+                    text: "Login"
+                    on_press: root.login(root.ids.username.text, root.ids.password.text)
+                    size_hint:0.3, 0.5
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                    background_color: 	0.6, 0.4, 0.9
             Label:
                 id: login_wrong
                 text: ""
         GridLayout:
             cols: 2
+            size_hint: 0.2, 0.2
             Button:
                 text: "Forgot Password"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1, 1
             Button:
                 text: "Sign Up"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1, 0.7, 1, 1
                 on_press: root.sign_up()
             
                 
@@ -35,6 +53,8 @@
 <SignUpScreen>:
     GridLayout
         cols: 1
+        padding: 20,20
+        spacing: 20,20 
         Label:
             text: "Sign up !!"
         TextInput:
@@ -43,9 +63,12 @@
         TextInput:
             id: password
             hint_text:"Password"
-        Button:
-            text: "Submit"
-            on_press: root.add_user(root.ids.username.text, root.ids.password.text)
+        RelativeLayout:    
+            Button:
+                text: "Submit"
+                size_hint:0.3, 0.5
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                on_press: root.add_user(root.ids.username.text, root.ids.password.text)
 
 
 #========================
@@ -54,11 +77,17 @@
 <SignUpScreenSuccess>:
     GridLayout
         cols: 1
+        spacing: 20, 10
+        padding: 20, 10
         Label:
             text: "Sign up successful"
-        Button:
-            text: "Login Page"
-            on_press: root.go_to_login()
+        RelativeLayout:
+            Button:
+                text: "Login Page"
+                background_color: 	0.6, 0.4, 0.9
+                on_press: root.go_to_login()
+                size_hint:0.2, 0.3
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
 
 
 #==================
@@ -67,20 +96,33 @@
 <LoginScreenSuccess>:
     GridLayout
         cols: 1
-        Button:
-            text:"Logout"
-            on_press: root.log_out()
+        spacing: 20, 10
+        padding: 20, 10
         Label:
             text: "How do you feel?"
+            font_size: '30sp'
+            color:0.6, 0.4, 0.9
         TextInput:
             id: feeling
-            hit_text:"Enter Happy, Sad, or Unloved."
-        Button:
-            text: "Enlighten me"
-            on_press: root.get_quote(root.ids.feeling.text)
+            hint_text:"Enter Happy, Sad, or Unloved."
+        RelativeLayout:
+            Button:
+                text: "Click here for your quote"
+                
+                on_press: root.get_quote(root.ids.feeling.text)
+                background_color: 	0.6, 0.4, 0.9
+                size_hint:0.3, 0.8
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
         Label:
             id: quote
             text: ""
+        RelativeLayout:
+            Button:
+                text:"Logout"
+                on_press: root.log_out()
+                background_color: 	0.6, 0.4, 0.9
+                size_hint:0.2, 0.3
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
 
 
 
