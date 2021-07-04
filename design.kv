@@ -17,6 +17,9 @@
             Button: 
                 text: "Login"
                 on_press: root.login(root.ids.username.text, root.ids.password.text)
+            Label:
+                id: login_wrong
+                text: ""
         GridLayout:
             cols: 2
             Button:
@@ -24,7 +27,8 @@
             Button:
                 text: "Sign Up"
                 on_press: root.sign_up()
-
+            
+                
 #==================
 #SIGN UP SCREEN
 #==================
@@ -69,10 +73,13 @@
         Label:
             text: "How do you feel?"
         TextInput:
-            hit_text:"Things to try: happy, sad, unloved..."
+            id: feeling
+            hit_text:"Enter Happy, Sad, or Unloved."
         Button:
             text: "Enlighten me"
+            on_press: root.get_quote(root.ids.feeling.text)
         Label:
+            id: quote
             text: ""
 
 
