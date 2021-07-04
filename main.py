@@ -7,7 +7,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 import json, glob
 from datetime import datetime
 from pathlib import Path
+from kivy.uix.image import Image
+from kivy.uix.behaviors import ButtonBehavior
 import random
+from hoverable import HoverBehavior
 Builder.load_file('design.kv')
 
 
@@ -79,6 +82,12 @@ class SignUpScreenSuccess(Screen):
     def go_to_login(self):
         self.manager.current = "login_screen"
         self.manager.transition.direction = 'right'
+
+#==================
+#LOUGOUT BUTTON IMAGE
+#==================
+class ImageButton(ButtonBehavior, HoverBehavior, Image):
+    pass
 
 #==================
 #ROOT WIDGET

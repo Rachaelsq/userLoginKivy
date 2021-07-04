@@ -90,9 +90,9 @@
                 pos_hint: {'center_x': 0.5, 'center_y': 0.6}
 
 
-#==================
-#LOG IN SCREEN SUCCESS
-#==================
+#================================
+#LOG IN SCREEN SUCCESS/ MAIN PAGE
+#================================
 <LoginScreenSuccess>:
     GridLayout
         cols: 1
@@ -107,24 +107,35 @@
             hint_text:"Enter Happy, Sad, or Unloved."
         RelativeLayout:
             Button:
-                text: "Click here for your quote"
-                
+                text: "Click here for a quote"
                 on_press: root.get_quote(root.ids.feeling.text)
                 background_color: 	0.6, 0.4, 0.9
-                size_hint:0.3, 0.8
+                size_hint:0.6, .4
                 pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-        Label:
-            id: quote
-            text: ""
+        ScrollView:
+            Label:
+                id: quote
+                text: ""
+                #none gives the text unlimited height
+                text_size: self.width, None
+                size_hint_y:None
+                #texture size is a tuple and the params are width of the txt and 2nd is height
+                height: self.texture_size[1]
+
+
         RelativeLayout:
-            Button:
-                text:"Logout"
+            ImageButton:
                 on_press: root.log_out()
-                background_color: 	0.6, 0.4, 0.9
+                source: 'logout_hover.png' if self.hovered else "logout_nothover.png"
                 size_hint:0.2, 0.3
-                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-
-
+                pos_hint: {'center_x': 0.93, 'center_y': 0.8}
+                
+#            Button:
+#                text:"Logout"
+#                on_press: root.log_out()
+#                background_color: 	0.6, 0.4, 0.9
+#               size_hint:0.2, 0.3
+#               pos_hint: {'center_x': 0.5, 'center_y': 0.6}
 
 #==================
 # ROOT WIDGET
